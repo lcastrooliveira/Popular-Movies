@@ -1,6 +1,7 @@
 package lucas.com.br.popularmovies;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnFr
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingsActivity = new Intent(this,SettingsActivity.class);
+            startActivity(settingsActivity);
             return true;
         }
         return super.onOptionsItemSelected(item);

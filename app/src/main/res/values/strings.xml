@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">Popular Movies</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_settings">Settings</string>
+    <string name="sort_title">Sort By</string>
+    <string name="sort_key">sort_by</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="sort_default">popular</string>
+    <string name="sort_rated">top_rated</string>
+    <string-array name="sort_entries">
+        <item>Popularity</item>
+        <item>Ratings</item>
+    </string-array>
+    <string-array name="sort_values">
+        <item>@string/sort_default</item>
+        <item>@string/sort_rated</item>
+    </string-array>
 </resources>

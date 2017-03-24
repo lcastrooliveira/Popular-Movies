@@ -1,8 +1,10 @@
 package lucas.com.br.popularmovies;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,8 +59,11 @@ public class MainFragment extends Fragment {
     }
 
     private void updateMovies() {
+        final SharedPreferences prefsGeneral = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final String sort_by = prefsGeneral.getString(getResources().getString(R.string.sort_key),
+                                                      getResources().getString(R.string.sort_default));
         MoviesFetcher mvf = new MoviesFetcher(mAdapter);
-        mvf.execute("popular");
+        mvf.execute(sort_by);
     }
 
     @Override

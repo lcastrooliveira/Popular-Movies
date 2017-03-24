@@ -1,7 +1,9 @@
 package lucas.com.br.popularmovies;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -26,6 +28,8 @@ import java.util.List;
 public class MoviesFetcher extends AsyncTask<String, Void, List<Movie>> {
 
     public static final String LOG_TAG = MoviesFetcher.class.getName();
+    private static final String API_KEY = BuildConfig.API_KEY;
+
     private ImageAdapter mAdapter;
 
     public MoviesFetcher(ImageAdapter adapter) {
@@ -37,14 +41,11 @@ public class MoviesFetcher extends AsyncTask<String, Void, List<Movie>> {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         try {
-            final String MOVIES_BASE_URL = "http://api.themoviedb.org/3/discover/movie?";
-
-            final String SORT_PARAM = "sort_by";
+            final String SORT_ORDER = params[0];
+            final String MOVIES_BASE_URL = "http://api.themoviedb.org/3/movie/"+SORT_ORDER+"?";
             final String API_KEY_PARAM = "api_key";
-            final String SORT_ORDER = "popularity.desc";
             Uri builtUri = Uri.parse(MOVIES_BASE_URL).buildUpon()
-                    .appendQueryParameter(SORT_PARAM, SORT_ORDER)
-                    .appendQueryParameter(API_KEY_PARAM, key)
+                    .appendQueryParameter(API_KEY_PARAM, API_KEY)
                     .build();
 
             URL url = new URL(builtUri.toString());
